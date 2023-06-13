@@ -18,10 +18,9 @@ X = df[relevant]
 Y = df['Transported']
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.33, random_state=42)
 
-clf = NuSVC()
+clf = NuSVC(kernel='rbf')
 clf.fit(X_train, Y_train)
 Y_pred = clf.predict(X_test)
-
 score = accuracy_score(Y_test, Y_pred)
 correctPrediction = accuracy_score(Y_test, Y_pred, normalize=False)
 print("accuracy score:" , score, "with", correctPrediction, "correct prediction")
