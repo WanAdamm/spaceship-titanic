@@ -1,4 +1,4 @@
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import NuSVC
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 import numpy as np
@@ -18,9 +18,10 @@ X = df[relevant]
 Y = df['Transported']
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.33, random_state=42)
 
-clf = KNeighborsClassifier(n_neighbors=10)
+clf = NuSVC()
 clf.fit(X_train, Y_train)
 Y_pred = clf.predict(X_test)
 
 score = accuracy_score(Y_test, Y_pred)
-print(score)
+correctPrediction = accuracy_score(Y_test, Y_pred, normalize=False)
+print("accuracy score:" , score, "with", correctPrediction, "correct prediction")
